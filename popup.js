@@ -23,6 +23,8 @@ changeColor.onclick = function() {
         fileData = fetchedData.mykey
         if (fileData === undefined){
             fileData = []
+        }else{
+            console.log("Got Data")
         }          
         chrome.storage.local.get("email", function(fetchedData1) {
             chrome.storage.local.get("password", function(fetchedData2) {
