@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "Canvas Todoist Integration",
+    "description": "This extension allows you to sync your schools canvas assignments with your todoist account, while avoiding overlap",
+    "version": "1.3",
+    "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "activeTab",
+      "https://ajax.googleapis.com/",
+      "https://lukegabel.pythonanywhere.com/",
+      "storage",
+      "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+      "declarativeContent"
+    ],
+    "content_security_policy": "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js; object-src 'self'"
+  }
