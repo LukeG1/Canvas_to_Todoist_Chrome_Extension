@@ -53,12 +53,15 @@ changeColor.onclick = function() {
                             chrome.storage.local.set({"mykey": JSON.parse(data)});
                             fileData = data;
                             console.log(fileData)
-                            chrome.storage.local.set({"mykey": JSON.parse(data)});
+                            chrome.storage.local.set({"temp": JSON.parse(data)});
                         });
                     });
                 });
             });
         });  
+    });
+    chrome.storage.local.get("temp", function(fetchedData) {
+        chrome.storage.local.set({"mykey": fetchedData.temp});
     });
     chrome.storage.local.get("mykey", function(fetchedData) {
         console.log(fetchedData.mykey)
