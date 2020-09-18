@@ -50,10 +50,20 @@ changeColor.onclick = function() {
                         var output = []
                         $.post(url, data=JSON.stringify(payload), function(data, status){
                             //console.log(JSON.parse(data));
-                            chrome.storage.local.set({"mykey": JSON.parse(data)});
-                            fileData = data;
-                            console.log(fileData)
-                            chrome.storage.local.set({"temp": JSON.parse(data)});
+                            if(JSON.parse(data)==0){
+                                //alert("No New Tasks")
+                                document.write ("No New Tasks");
+                            }else if(JSON.parse(data)==1){
+                                document.write ("Check your Canvas credientials");
+                            }else if(JSON.parse(data)==2){
+                                document.write ("Check your Todoist credientials");
+                            }else{
+                                chrome.storage.local.set({"mykey": JSON.parse(data)});
+                                fileData = data;
+                                console.log(fileData)
+                                chrome.storage.local.set({"temp": JSON.parse(data)});
+                                document.write ("Tasks Succesfullly updated");
+                            }
                         });
                     });
                 });
@@ -77,12 +87,16 @@ cBox.onclick = function() {
         document.getElementById('password').hidden = false;
         document.getElementById('canurl').hidden = false;
         document.getElementById('canapi').hidden = false;
+        document.getElementById('t1').hidden = false;
+        document.getElementById('t2').hidden = false;
     }else{
         document.getElementById('emergency').hidden = true;
         document.getElementById('email').hidden = true;
         document.getElementById('password').hidden = true;
         document.getElementById('canurl').hidden = true;
         document.getElementById('canapi').hidden = true;
+        document.getElementById('t1').hidden = true;
+        document.getElementById('t2').hidden = true;
     }
 };
 
