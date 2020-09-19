@@ -19,21 +19,26 @@ changeColor.onclick = function() {
         chrome.storage.local.set({"api_url": api_url});
     }
 
+
     fileData = [];
     chrome.storage.local.get("mykey", function(fetchedData) {
         fileData = fetchedData.mykey
         if (fileData === undefined){
             fileData = []
         }else{
+            console.log(fileData)
             console.log("Got Data")
         }          
         chrome.storage.local.get(["email","password","api_url","api_key"], function(fetchedData) {
+            var today = new Date();
+            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
             var url = 'https://lukegabel.pythonanywhere.com';
             var payload = {
                 "todoist_email":fetchedData.email, 
                 "todoist_password":fetchedData.password, 
                 "canvas_url":fetchedData.api_url, 
                 "canvas_api_key":fetchedData.api_key,
+                "system_time":date,
                 "data":JSON.stringify(fileData)
                 };
             var output = []
@@ -60,6 +65,9 @@ changeColor.onclick = function() {
     chrome.storage.local.get("temp", function(fetchedData) {
         chrome.storage.local.set({"mykey": fetchedData.temp});
     });
+
+
+
     // chrome.storage.local.get("mykey", function(fetchedData) {
     //     console.log(fetchedData.mykey)
     // });
@@ -79,4 +87,11 @@ cBox.onclick = function() {
 let emergency = document.getElementById('emergency');
 emergency.onclick = function() {
     chrome.storage.local.set({"mykey": []});
+
+
+    chrome.storage.local.get("mykey", function(fetchedData) {
+        console.log(fetchedData.mykey)
+    });
+
+
 };
