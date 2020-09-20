@@ -53,11 +53,11 @@ changeColor.onclick = function() {
                 }else if(JSON.parse(data)==3){
                     document.write ("Ensure That you have incuded credientials to send");
                 }else{
-                    chrome.storage.local.set({"mykey": JSON.parse(data)});
+                    chrome.storage.local.set({"mykey": JSON.parse(data)[1]});
                     fileData = data;
                     console.log(fileData)
-                    chrome.storage.local.set({"temp": JSON.parse(data)});
-                    document.write ("Tasks Succesfullly updated");
+                    chrome.storage.local.set({"temp": JSON.parse(data)[1]});
+                    document.write ("Tasks Succesfullly updated, Added " + JSON.parse(data)[0] + " tasks!");
                 }
             });
         });  
@@ -92,6 +92,5 @@ emergency.onclick = function() {
     chrome.storage.local.get("mykey", function(fetchedData) {
         console.log(fetchedData.mykey)
     });
-
 
 };
