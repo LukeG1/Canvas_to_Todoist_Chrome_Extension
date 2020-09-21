@@ -1,5 +1,36 @@
+let submit = document.getElementById('submit');
+submit.onclick = function() {
+
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var api_url = document.getElementById('canurl').value;
+    var api_key = document.getElementById('canapi').value;
+
+    if(email.length > 0){
+        chrome.storage.local.set({"email": email});
+    }
+    if(password.length > 0){
+        chrome.storage.local.set({"password": password});
+    }
+    if(api_key.length > 0){
+        chrome.storage.local.set({"api_key": api_key});
+    }
+    if(api_url.length > 0){
+        chrome.storage.local.set({"api_url": api_url});
+    }
+
+    document.getElementById('data_vis').checked = false;
+    document.getElementById('showhide').hidden = true;
+    document.getElementById('changeColor').hidden = false;
+};
+
+
 let changeColor = document.getElementById('changeColor');
 changeColor.onclick = function() {
+
+    document.getElementById('showhide').hidden = true;
+    document.getElementById('changeColor').hidden = true;
+    document.getElementById('loading').hidden = false;
 
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -79,8 +110,10 @@ cBox.onclick = function() {
     chrome.storage.local.set({"cBox": document.getElementById('data_vis').checked});
     if(document.getElementById('data_vis').checked){
         document.getElementById('showhide').hidden = false;
+        document.getElementById('changeColor').hidden = true;
     }else{
         document.getElementById('showhide').hidden = true;
+        document.getElementById('changeColor').hidden = false;
     }
 };
 
