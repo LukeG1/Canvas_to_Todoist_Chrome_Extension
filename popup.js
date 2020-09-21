@@ -28,7 +28,7 @@ submit.onclick = function() {
 let changeColor = document.getElementById('changeColor');
 changeColor.onclick = function() {
 
-    document.getElementById('showhide').hidden = true;
+    document.getElementById('details').hidden = true;
     document.getElementById('data_vis').hidden = true;
     document.getElementById('changeColor').hidden = true;
     document.getElementById('loading').hidden = false;
@@ -76,20 +76,27 @@ changeColor.onclick = function() {
             var output = []
             $.post(url, data=JSON.stringify(payload), function(data, status){
                 //console.log(JSON.parse(data));
-                if(JSON.parse(data)==0){
-                    document.write ("No New Tasks");
+                document.getElementById('loading').hidden = true;
+                document.getElementById('output').hidden = false;
+                if(JSON.parse(data)==0){ 
+                    document.getElementById("output_data").innerHTML="No New Tasks";
+                    //document.write("No New Tasks");
                 }else if(JSON.parse(data)==1){
-                    document.write ("Check your Canvas credientials");
+                    document.getElementById("output_data").innerHTML="Check your Canvas credientials";
+                   // document.write("Check your Canvas credientials");
                 }else if(JSON.parse(data)==2){
-                    document.write ("Check your Todoist credientials");
+                    document.getElementById("output_data").innerHTML="Check your Todoist credientials";
+                    //document.write("Check your Todoist credientials");
                 }else if(JSON.parse(data)==3){
-                    document.write ("Ensure That you have incuded credientials to send");
+                    document.getElementById("output_data").innerHTML="Ensure That you have incuded credientials to send";
+                    //document.write("Ensure That you have incuded credientials to send");
                 }else{
                     chrome.storage.local.set({"mykey": JSON.parse(data)[1]});
                     fileData = data;
                     console.log(fileData)
                     chrome.storage.local.set({"temp": JSON.parse(data)[1]});
-                    document.write ("Tasks Succesfullly updated, Added " + JSON.parse(data)[0] + " tasks!");
+                    document.getElementById("output_data").innerHTML="Tasks Succesfullly updated, Added " + JSON.parse(data)[0] + " tasks!";
+                    //document.write("Tasks Succesfullly updated, Added " + JSON.parse(data)[0] + " tasks!");
                 }
             });
         });  
