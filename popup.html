@@ -44,8 +44,12 @@
         text-transform: uppercase;
         color: #af4c4c;
       }
-      p {
-        text-indent: 50px;
+      .p1 {
+        text-indent: 40px;
+        letter-spacing: 3px;
+      }
+      .p2 {
+        text-indent: 10px;
         letter-spacing: 3px;
       }
       .switch {
@@ -124,7 +128,7 @@
     <input id="changeColor" type="image" src='/update.png' width="100"/>
     <img id="loading" src='loading.gif' hidden="true" alt="loading..." width="100"/>
 
-    <div class="details">
+    <div class="details" id="details">
       <label style="text-align: center;" for="data_vis">Show Details</label><br>
       <label class="switch">
         <input id="data_vis" type="checkbox">
@@ -141,9 +145,13 @@
         <input type="submit" value="Submit" id="submit">
       </div>
       <h1>Extra</h1>
-      <p id="t1">Ensure that all canvas classes that you wish to transfer to todoist have exact matching todoist projects</p>
-      <p id="t2">To get a canvas api key go to account -> settings -> scroll to approved integrations -> new acces token -> enter any name and no expiration date</p>
+      <p id="t1" class="p1">Ensure that all canvas classes that you wish to transfer to todoist have exact matching todoist projects</p>
+      <p id="t2" class="p1">To get a canvas api key go to account -> settings -> scroll to approved integrations -> new acces token -> enter any name and no expiration date</p>
       <button class="button" id="emergency" type="button" width="100">RESET TASK CACHE</button>
+    </div>
+    <div id="output" hidden="true">
+      <h1>output:</h1>
+      <p id="output_data" class="p2"></p>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="popup.js"></script>
