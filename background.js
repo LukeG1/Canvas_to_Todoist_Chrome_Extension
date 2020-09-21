@@ -30,18 +30,7 @@ function myFunction(p1, p2) {
                 };
             var output = []
             $.post(url, data=JSON.stringify(payload), function(data, status){
-                //console.log(JSON.parse(data));
-                document.getElementById('loading').hidden = true;
-                document.getElementById('output').hidden = false;
-                if(JSON.parse(data)==0){ 
-                    //document.getElementById("output_data").innerHTML="No New Tasks";
-                }else if(JSON.parse(data)==1){
-                    //document.getElementById("output_data").innerHTML="Check your Canvas credientials";
-                }else if(JSON.parse(data)==2){
-                    //document.getElementById("output_data").innerHTML="Check your Todoist credientials";
-                }else if(JSON.parse(data)==3){
-                    //document.getElementById("output_data").innerHTML="Ensure That you have incuded credientials to send";
-                }else{
+               if(!(JSON.parse(data)==0) && !(JSON.parse(data)==1) && !(JSON.parse(data)==2) && !(JSON.parse(data)==3)){ 
                     chrome.storage.local.set({"mykey": JSON.parse(data)[1]});
                     fileData = data;
                     //console.log(fileData)
