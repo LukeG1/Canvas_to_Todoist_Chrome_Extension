@@ -1,3 +1,23 @@
+chrome.storage.local.get(["auto_on","auto_interval"], function(fetchedData) {
+    document.getElementById('auto_sync').checked = fetchedData.auto_on;
+    document.getElementById('time_selected').hidden=false;
+    document.getElementById('time_interval').hidden=false;
+    document.getElementById('t_label').hidden=false;
+    if(fetchedData.auto_on){
+        if(fetchedData.auto_interval === undefined){
+            document.getElementById('time_interval').value = 6
+            document.getElementById('time_selected').innerHTML=6 + " Hours";
+        }else{
+            document.getElementById('time_interval').value = fetchedData.auto_interval
+            document.getElementById('time_selected').innerHTML=fetchedData.auto_interval + " Hours";
+        }
+    }else{
+        document.getElementById('time_selected').hidden=true;
+        document.getElementById('time_interval').hidden=true;
+        document.getElementById('t_label').hidden=true;
+    }
+});
+
 let submit = document.getElementById('submit');
 submit.onclick = function() {
 
@@ -105,12 +125,6 @@ changeColor.onclick = function() {
         chrome.storage.local.set({"mykey": fetchedData.temp});
     });
 
-
-
-    // chrome.storage.local.get("mykey", function(fetchedData) {
-    //     console.log(fetchedData.mykey)
-    // });
-
 };
 
 let cBox = document.getElementById('data_vis');
@@ -134,4 +148,26 @@ emergency.onclick = function() {
         console.log(fetchedData.mykey)
     });
 
+};
+
+
+let auto = document.getElementById('auto_sync');
+auto.onclick = function() {
+    if(document.getElementById('auto_sync').checked==true){
+        document.getElementById('time_selected').hidden=false;
+        document.getElementById('time_interval').hidden=false;
+        document.getElementById('t_label').hidden=false;
+        chrome.storage.local.set({"auto_on": true});
+    }else{
+        document.getElementById('time_selected').hidden=true;
+        document.getElementById('time_interval').hidden=true;
+        document.getElementById('t_label').hidden=true;
+        chrome.storage.local.set({"auto_on": false});
+    }
+};
+
+let interval = document.getElementById('time_interval');
+interval.onchange = function() {
+    document.getElementById('time_selected').innerHTML=document.getElementById('time_interval').value + " Hours";
+    chrome.storage.local.set({"auto_interval": document.getElementById('time_interval').value});
 };
