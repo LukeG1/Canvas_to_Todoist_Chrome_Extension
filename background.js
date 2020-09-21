@@ -30,7 +30,7 @@ function myFunction(p1, p2) {
                 };
             var output = []
             $.post(url, data=JSON.stringify(payload), function(data, status){
-               if(!(JSON.parse(data)==0) && !(JSON.parse(data)==1) && !(JSON.parse(data)==2) && !(JSON.parse(data)==3)){ 
+                if(!(JSON.parse(data)==0) && !(JSON.parse(data)==1) && !(JSON.parse(data)==2) && !(JSON.parse(data)==3)){ 
                     chrome.storage.local.set({"mykey": JSON.parse(data)[1]});
                     fileData = data;
                     //console.log(fileData)
