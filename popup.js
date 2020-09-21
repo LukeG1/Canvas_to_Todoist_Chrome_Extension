@@ -29,6 +29,7 @@ let changeColor = document.getElementById('changeColor');
 changeColor.onclick = function() {
 
     document.getElementById('showhide').hidden = true;
+    document.getElementById('data_vis').hidden = true;
     document.getElementById('changeColor').hidden = true;
     document.getElementById('loading').hidden = false;
 
